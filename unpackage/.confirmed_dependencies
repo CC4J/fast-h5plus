@@ -1,0 +1,13 @@
+{
+  "dist/index.html": {
+    "refer": [
+      "dist/list.html"
+    ],
+    "resources": []
+  },
+  "dist/list.html": {
+    "refer": [
+      "dist/listDetail.html"
+    ]
+  }
+}
