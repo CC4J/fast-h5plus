@@ -52,7 +52,12 @@ const defaultConfig = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192
+          }
+        }]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,

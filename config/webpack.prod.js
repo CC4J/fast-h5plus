@@ -16,5 +16,8 @@ module.exports = merge(common, {
   ],
   output: {
     publicPath: './',  // 用于生产环境
+  },
+  performance: { // 关闭打包时的性能提示，vendor文件超过200k不会warning提示
+    hints: false
   }
 });
