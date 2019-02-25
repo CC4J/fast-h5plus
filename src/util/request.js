@@ -10,6 +10,7 @@ export default (options) => {
         resolve(data);
       },
       error: function (err) {
+        mui.toast('网络连接异常');
         reject(err);
       }
     })
