@@ -12,13 +12,6 @@ module.exports = merge(common, {
     compress: true,
     port: 9000,
     index: devPage + '.html',
-    proxy: {
-      '/api': {
-        target: 'http://47.95.13.22:8080',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {'^/api' : '/zhsq_admin/interface'}
-      }
-    }
+    proxy: {}
   }
 })
