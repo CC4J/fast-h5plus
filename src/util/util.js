@@ -30,7 +30,6 @@ export const formatDate = (date, fmt) => {
   return fmt
 }
 
-
 // 货币格式化
 export function currency(value, currency, decimals) {
   value = parseFloat(value)

@@ -5,7 +5,7 @@ const merge = require('webpack-merge');
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
+  // devtool: 'source-map',  
   plugins: [
     new UglifyJSPlugin({
       sourceMap: true

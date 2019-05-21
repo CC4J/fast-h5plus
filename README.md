@@ -27,7 +27,9 @@ npm install --registry=https://registry.npm.taobao.org
 
 第一步是在 src/pages/ 目录下新建每个页面的入口js文件以及入口vue文件，如我们新建一个登陆页，我们需要在src/pages/下新建src/pages/login/login.js与src/pages/login/login.vue。
 
-第二步需要在根目录下的config目录中修改page.config.js文件，如：
+第二步：将模板目录中的template.js与template.vue文件中的代码复制到你的login.js与login.vue中。并对login.js中引入的template.vue改为login.vue
+
+第三步需要在根目录下的config/pages/onePage.js中添加你新建的页面信息，如：
 ```js
 exports.pageSet = [
   {title: '登陆页', filename: 'login'}
@@ -84,6 +86,19 @@ git pull
 
 // 将本地工作区代码提交到远程
 git push
+
+// 切换分支（如切换到开发分支）
+git checkout dev
+
+// 分支合并（如主分支要合并开发分支的代码）
+// 第一步： 由开发分支切换到主分支上
+git checkout master
+// 第二步： 合并开发分支代码
+git merge dev
+// 第三步： 将合并代码提交到远程
+git push
+// 第四部： 切回到开发分支进行开发
+git checkout dev
 ```
 
 ### 常用方法
@@ -548,6 +563,8 @@ mui.back();//子页面最后一步 Back回父级页面
   });
 
 ```
+
+#### 开启右滑关闭功能
 ```js
 mui.init({
             swipeBack: true //启用右滑关闭功能

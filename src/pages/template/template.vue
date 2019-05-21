@@ -1,7 +1,7 @@
 <template>
     <div>
         <heador>首页</heador>
-        <div class="mui-content"></div>
+        <div class="mui-content">我是一个模板页面，大家可以把模板页面的js和.vue文件直接copy到你的新页面去再进行相应的修改</div>
     </div>
 </template>
 

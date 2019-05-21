@@ -17,6 +17,7 @@ export default (options) => {
         } else {
           resolve(res);
         }
+        // resolve(res);
       },
       error: function (xhr, type, errorThrown) {
         mui.toast('网络连接异常');
