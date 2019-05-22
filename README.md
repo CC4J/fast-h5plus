@@ -8,11 +8,6 @@
 - 框架默认使用750px的设计稿，开发过程中在样式文件里直接书写像素px单位，webpack编译后会自动转换成对应的rem值
 - 支持es6，es7语法，打包编译自动转es5，让你感受丝滑一般的开发畅快
 
-## 与我联系
-
-- Q群：931192812
-- 邮箱：caocong9044@163.com
-
 ## 使用
 ### 获取fast-h5plus
 ```
@@ -27,14 +22,16 @@ npm install
 npm install --registry=https://registry.npm.taobao.org
 ```
 ### 开发
+
+#### 转成app项目
+将项目用Hbuilder打开，使用Hbuilder转换为app项目功能将项目进行转换，具体操作为鼠标右键点击项目目录，在弹出选项中选择转换为app项目，转换完成后项目中将多出manifest.json app配置文件
+
 #### 新建页面
 新建一个页面我们需要做两步操作。
 
 第一步是在 src/pages/ 目录下新建每个页面的入口js文件以及入口vue文件，如我们新建一个登陆页，我们需要在src/pages/下新建src/pages/login/login.js与src/pages/login/login.vue。
 
-第二步：将模板目录中的template.js与template.vue文件中的代码复制到你的login.js与login.vue中。并对login.js中引入的template.vue改为login.vue
-
-第三步需要在根目录下的config/pages/onePage.js中添加你新建的页面信息，如：
+第二步需要在根目录下的config目录中修改page.config.js文件，如：
 ```js
 exports.pageSet = [
   {title: '登陆页', filename: 'login'}
