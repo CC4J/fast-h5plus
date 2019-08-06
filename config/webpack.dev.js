@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const { devPage } = require('./page.config');
 const ip = require('ip');
+const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -12,6 +13,10 @@ module.exports = merge(common, {
     compress: true,
     port: 9000,
     index: devPage + '.html',
-    proxy: {}
-  }
+    proxy: {},
+    hot: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 })

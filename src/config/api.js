@@ -1,15 +1,13 @@
 // var devMode = true;
 var devMode = false;
 
-import ccApi from './ccApi'
-import lxwApi from './lxwApi'
-import xzdApi from './xzdApi'
-import otherApi from './otherApi'
+import pp1Api from './pp1Api' // 开发者1负责的api
+import pp2Api from './pp2wApi' // 开发者2负责的api
+import pp3Api from './pp3Api' // 开发者3负责的api
 
 export default {
     'env': devMode,
-    ...ccApi,
-    ...lxwApi,
-    ...xzdApi,
-    ...otherApi
+    ...pp1Api,
+    ...pp2Api,
+    ...pp3Api
 }

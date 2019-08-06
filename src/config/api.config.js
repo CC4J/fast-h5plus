@@ -7,19 +7,19 @@ const apiRoot = {
         phpIP: ''
     },
     // 个人的开发环境
-    ccDev: {
+    pp1Dev: {
         javaIP: '',
         phpIP: ''
     },
-    lxwDev: {
+    pp2Dev: {
         javaIP: '',
         phpIP: ''
     },
-    xzdDev: {
+    pp3Dev: {
         javaIP: '',
         phpIP: ''
     },
-    otherDev: {
+    pp4Dev: {
         javaIP: '',
         phpIP: ''
     },
