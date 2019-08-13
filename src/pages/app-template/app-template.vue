@@ -1,6 +1,6 @@
 <template>
     <div>
-        <heador>首页</heador>
+        <heador>app-模板</heador>
         <div class="mui-content"></div>
     </div>
 </template>
