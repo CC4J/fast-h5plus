@@ -5,12 +5,18 @@ import 'src/public/js/hotcss.js';
 import Vue from 'vue';
 import Template from './template.vue';
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
+
 import api from 'src/config/api';
 
 if (api.env) {
-	const  VConsole = require('vconsole');
+	const VConsole = require('vconsole');
 	new VConsole();
 }
+
 
 Vue.config.productiontip = !api.env;
 
@@ -21,6 +27,3 @@ new Vue({
 	},
 	template: '<Template/>'
 });
-
-
-

@@ -1,7 +1,17 @@
 # fast-h5plus
+
+# fast-h5plus 2.0来啦！！！！！！
+
+## 本次更新内容如下：
+- 剔除了项目中多余的组件跟工具类，只提供了最基础的头部导航栏与日期处理，ajax等工具类。
+- 默认UI库由mint-ui更换为vant-ui。
+- 【重要】由于node-sass安装过于缓慢困难，框架从2.0开始使用less预处理器
+- 【重要】框架添加create.js新建页面工具
+- 【重要】框架添加了vue-cli3.0中引入的.env.xx文件，不同环境的全局对象维护起来更加简单
+
 ## 说明
 - 使用webpack构建多页面移动APP开发的快速框架
-- 使用scss预处理器提高app样式开发效率
+- 使用less预处理器提高app样式开发效率
 - 使用h5plus库调用移动端底层接口
 - 使用vue提高开发效率，远离dom操作的繁琐
 - 使用移动端布局终极解决方案hotcss让移动端布局开发更加容易
@@ -14,6 +24,7 @@
 - Q群: 931192812 
 
 ## 使用
+
 ### 获取fast-h5plus
 ```
 git clone git@github.com:CC4J/fast-h5plus.git
@@ -28,50 +39,52 @@ npm install --registry=https://registry.npm.taobao.org
 ```
 ### 开发
 
+本框架可以用来开发mui的app项目，也可以用来开发web，h5项目。若开发app，需要将项目转成app项目。开发h5项目不需做任何操作。
+
 #### 转成app项目
 将项目用Hbuilder打开，使用Hbuilder转换为app项目功能将项目进行转换，具体操作为鼠标右键点击项目目录，在弹出选项中选择转换为app项目，转换完成后项目中将多出manifest.json app配置文件
 
 #### 新建页面
-新建一个页面我们需要做两步操作。
 
-第一步是在 src/pages/ 目录下新建每个页面的入口js文件以及入口vue文件，如我们新建一个登陆页，我们需要在src/pages/下新建src/pages/login/login.js与src/pages/login/login.vue。
+在项目的根路径下打开命令行窗口,执行 `node create home 首页`指令即可。
 
-第二步需要在根目录下的config目录中修改page.config.js文件，如：
+#### 添加环境变量
+
+项目一般分开发环境，测试环境，生产环境等。不同环境最大的区别就是我们调用的接口ip不同。开发环境的接口ip可能是`http://xx.xx.xx.dev`。测试环境跟正式环境可能是`http://xx.xx.xx.test`与`http://xx.xx.xx.prod`;若人工去维护这个事情每次打包的时候繁琐还容易出错。
+
+fast-h5plus为大家提供了.env环境配置文件。大家可以随心所欲的配置各个环境所需的数据，具体操作如：
 ```js
-exports.pageSet = [
-  {title: '登陆页', filename: 'login'}
-]
+// .env.dev 文件中添加全局对象
+RootApi=http://www.baidu.com
+NODE_ENV=development // 环境变量分 development跟production。若使用development，则页面中会启动vconsole模块，方便调试app时查看打印信息。
+
+// package.json 文件添加npm脚本
+// 脚本中的 --appenv dev 这是映射 .env.dev配置文件。若您添加的文件是.env.dev233 则这里如此添加 --appenv dev233
+"dev": "webpack-dev-server --config config/webpack.dev.js --appenv dev",
+
+// 源码中使用，如src/config/api_dev1.js
+var serverIp = process.env.FAST_H5PLUS_RootApi
 ```
+.env文件中声明的对象使用方式为 `process.env.FAST_H5PLUS_` 加上你声明的变量名称。
+
 #### 页面调试
+
+如我们通过指令`node create home 首页`新建了首页，执行`npm start`启动项目
+
+若是web项目，直接在浏览器中调试即可。打开浏览器,输入`http://xxxx.xxxx.xxxx.xxxx:9000/home.html`即可。
+
 新建完页面之后，我们需要在手机或pc浏览器中调试页面，需要进行三步操作。
 
-第一步：修改根目录下的config目录中修改page.config.js文件，若您的app中第一个页面是登录页login，则修改如下：
-```js
-exports.devPage = 'login';
-```
-在浏览器中想调试哪个静态页面样式，如我们要调试home.html页面样式，在浏览器地址栏输入如下：
-```
-http://xxxx.xxxx.xxxx.xxxx:9000/home.html
-```
+若是app项目，则浏览器中只能调试UI样式，方法跟web项目一样。由于浏览器中不存在mui项目中的plus对象。所以功能调试只能在app中进行。
 
-第二步：修改src/config/ 目录下的api.js文件，如
-```js
-var devMode = true;
-```
-将devMode的值改为true，作用有两处，一是开发阶段将使用webpack-dev-server的反向代理功能进行跨域请求。二是启动vconsole模块，方便在手机端调试时查看控制台的输出信息。这一步操作在整个开发过程中只进行一次。
+app调试：在命令行运行npm start指令，启动webpack-dev-server服务。控制台会打印当前服务器的ip地址与端口后，我们只需要在Hbuilder中修改manifest中的入口为此ip地址与端口号则可启动进行真机调试。
 
-第三步：在命令行运行npm start指令，启动webpack-dev-server服务。控制台会打印当前服务器的ip地址与端口后，我们只需要在Hbuilder中修改manifest中的入口为此ip地址与端口号则可启动进行真机调试。
-
-注意：每次新建一个页面之后需要先停掉webpack-dev-server服务，按上面步骤操作之后再重新运行npm start命令即可。Hbuilder启动一次之后不需要再重新启动，你甚至可以停掉Hbuilder项目，手机中的调试基座仍会进行自动刷新。
+注意：每次新建一个页面之后需要先停掉webpack-dev-server服务。新建页面之后再重新运行npm start命令即可。Hbuilder启动一次之后不需要再重新启动，你甚至可以停掉Hbuilder项目，手机中的调试基座仍会进行自动刷新。
 
 ### 打包
 整个开发结束之后，我们需要对项目进行打包成apk或者ipk。打包之前需要进行以下操作：
 
-第一步：修改src/config/ 目录下的api.js文件，如
-```js
-var devMode = false;
-```
-将devMode的值改为false将关闭页面vconsole控制台，关闭webpack-dev-server反向代理进行跨域功能。
+第一步：将.env.prod中的NODE_ENV值修改为production,该操作将关闭页面vconsole控制台，关闭webpack-dev-server反向代理进行跨域功能。
 
 第二步：修改Hbuilder中manifest.json文件的入口，如我们app的入口页是登陆页面，则入口修改为dist/login.html.
 

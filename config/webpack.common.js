@@ -2,7 +2,9 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const webpack = require('webpack')
+const readEnv = require('./readEnv')
+const argv = require('yargs').argv;
 const {
   pageSet
 } = require('./page.config');
@@ -24,6 +26,9 @@ for (var i = 0; i < pageSet.length; i++) {
   );
 }
 
+// 全局变量处理
+const env = readEnv(`../.env.${argv.appenv}`)
+
 const defaultConfig = {
   entry: entrySet,
   module: {
@@ -36,7 +41,7 @@ const defaultConfig = {
       use: ['vue-loader']
     },
     {
-      test: /\.scss$/,
+      test: /\.less$/,
       use: [{
         loader: 'vue-style-loader'
       },
@@ -51,7 +56,7 @@ const defaultConfig = {
         }
       },
       {
-        loader: 'sass-loader'
+        loader: 'less-loader'
       }
       ]
     },
@@ -77,6 +82,11 @@ const defaultConfig = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        ...env
+      }
+    }),
     new VueLoaderPlugin(),
     new CleanWebpackPlugin('dist/*.*', {
       root: path.resolve(__dirname, '../'),

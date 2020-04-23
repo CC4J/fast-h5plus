@@ -1,13 +1,8 @@
-// var devMode = true;
-var devMode = false;
+var devMode = process.env.FAST_H5PLUS_NODE_ENV == 'development';
 
-import pp1Api from './pp1Api' // 开发者1负责的api
-import pp2Api from './pp2wApi' // 开发者2负责的api
-import pp3Api from './pp3Api' // 开发者3负责的api
+import api_dev1 from './api_dev1' // 成员1定义的api
 
 export default {
     'env': devMode,
-    ...pp1Api,
-    ...pp2Api,
-    ...pp3Api
+    ...api_dev1,
 }
