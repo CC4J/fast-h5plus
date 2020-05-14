@@ -10,15 +10,14 @@ import 'vant/lib/index.css';
 
 Vue.use(Vant);
 
-import api from 'src/config/api';
+let isDev = process.env.FAST_H5PLUS_NODE_ENV == 'development' ? true : false;
 
-if (api.env) {
+if (isDev) {
 	const VConsole = require('vconsole');
 	new VConsole();
 }
 
-
-Vue.config.productiontip = !api.env;
+Vue.config.productiontip = !isDev;
 
 new Vue({
 	el: '#app',

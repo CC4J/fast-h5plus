@@ -20,7 +20,7 @@ export default (options) => {
         // resolve(res);
       },
       error: function (xhr, type, errorThrown) {
-        mui.toast('网络连接异常');
+        mui.toast('稍等一会，马上就好');
         reject(xhr, type, errorThrown);
       }
     })

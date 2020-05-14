@@ -5,7 +5,7 @@ const path = require('path')
 module.exports = (file) => {
     let fileName = path.join(__dirname, file);
     let data = fs.readFileSync(fileName, { encoding: 'utf8' })
-    let d = data.replace(/\r/g, ',').replace(/\n/g, ',') // 把换行和回车替换
+    let d = data.replace(/\r/g, ',').replace(/\n/g, ',').replace(/\s/g, '') // 把换行和回车替换
     let arr = d.split(',').map(item => {
         return item.split('=')
     }) // [ [ 'a', '1' ], [ 'b', '2' ] ]
